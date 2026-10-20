@@ -1,0 +1,56 @@
+# ---- 凭据（最重要）----
+.env
+.env.*
+!.env.example
+config/config.yaml.bak*
+backend/config/config.yaml.bak*
+*.yaml.bak*
+*.win.bak
+**/node_modules.*.bak/
+*.pem
+*.key
+
+# ---- Python ----
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+
+# ---- 前端 ----
+node_modules/
+node_modules.*.bak/
+dist/
+.vite/
+
+# ---- 真实/半真实检验报告素材（含姓名、门诊号等个人信息，绝不入库）----
+测试报告/
+README.pdf
+
+# ---- 本地过程文档（含调试记录与内部交接，不进公开仓库）----
+交接-新会话必读.md
+本地环境说明.md
+
+# ---- 第三方教学资料（卖家原创课件，含水印，不进公开仓库）----
+docs/*.pdf
+
+# ---- 本地数据资产（含用户数据与向量库，体积大且不可再生）----
+data/runtime/
+data/uploads/
+data/chroma/
+data/knowledge_base/admin_uploads/
+backend/models/
+models/
+
+# ---- 日志与运行时 ----
+logs/
+storage/
+*.log
+*.pid
+.DS_Store
+.idea/
+.vscode/
+
+# ---- 旧截图（本地保留，不入库）----
+screenshots/archive/

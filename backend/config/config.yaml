@@ -1,0 +1,81 @@
+llm:
+  # 密钥不写在此处：由 backend/.env 的 MEDIX_API_KEY 注入（该文件权限 600、不入库）
+  api_key: ""
+  base_url: "https://api.deepseek.com"
+  model_name: "deepseek-flash"
+  api_type: "chat_completions"
+  auth_scheme: "bearer"
+  temperature: 0.3
+  max_tokens: 1800
+  max_retries: 2
+
+vlm:
+  # 同上：由 backend/.env 的 MEDIX_VLM_API_KEY 注入
+  api_key: ""
+  base_url: "https://api.deepseek.com"
+  model_name: "deepseek-flash"
+  temperature: 0.1
+  max_tokens: 4096
+
+embedding:
+  # provider 可选: local / api / dmxapi / auto
+  # local: 使用 local_model_path 本地加载
+  # dmxapi/api: 调用 base_url + /embeddings 远程接口
+  # auto: local_model_path 存在则本地，否则远程 API
+  provider: "local"
+  api_key: ""
+  base_url: ""
+  auth_scheme: "bearer"
+  model_name: "Qwen3-Embedding-0.6B"
+  local_model_path: "/Users/Admin/Downloads/项目/医路通Agent_Pro/backend/models/Qwen3-Embedding-0.6B"
+  device: "cpu"
+  dimensions: 1024
+  batch_size: 16
+  query_instruction: "Instruct: 根据用户的医疗咨询问题，检索最相关的医学知识和报告内容\nQuery: "
+
+server:
+  host: "127.0.0.1"
+  port: 8012
+
+rag:
+  knowledge_dir: "../data/knowledge_base"
+  triage_kb_dir: "../data/medical-triage-kb"
+  top_k: 5
+  use_chroma: true
+
+chroma:
+  persist_dir: "../data/chroma"
+  kb_collection: "medical_kb"
+  user_reports_collection: "user_reports"
+  top_k_kb: 6
+  top_k_reports: 4
+  chunk_size: 400
+  chunk_overlap: 60
+
+upload:
+  storage_dir: "../data/uploads"
+  max_file_mb: 20
+  allowed_extensions: ["png", "jpg", "jpeg", "webp", "bmp", "pdf", "docx", "doc", "xlsx", "xls", "csv"]
+
+database:
+  type: "sqlite"
+  postgres_url: ""
+  sqlite_path: "../data/runtime/medix_enterprise.db"
+
+features:
+  enable_llm: true
+  enable_deep_search: true
+  enable_mock_when_llm_missing: true
+  enable_chroma: true
+  enable_vlm_upload: true
+  enable_llm_router: true
+
+auth:
+  # 由 backend/.env 的 MEDIX_TOKEN_SECRET 注入；为空时启动会生成临时密钥并告警
+  token_secret: ""
+  token_expire_hours: 168
+
+admin:
+  # 登录凭据由 backend/.env 的 MEDIX_ADMIN_USERNAME / MEDIX_ADMIN_PASSWORD 注入
+  username: ""
+  password: ""
